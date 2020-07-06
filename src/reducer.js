@@ -1,65 +1,23 @@
 const initialState = {
-    formData: {
-        step1: {
-            fname: "",
-            lname: ""
-        },
-        step2: {
-            email: "",
-            phone: ""
-        }
-        ,
-        step3: {
-            laddress: "",
-            paddress: ""
-        }
-        ,
-        step4: {
-            school: "",
-            schoolper: ""
-        }
-        ,
-        step5: {
-            college: "",
-            collegeper: ""
-        }
-        ,
-        step6: {
-            react: "",
-            node: ""
-        }
-    },
-    stepComplete: 1,
-    currentStep: 1,
-    formComplete: false
+    query: "",
+    Data: [],
 }
 function reducer(state = initialState, action) {
     console.log('reducer', state, action);
 
     switch (action.type) {
-        case 'CHANGE_VALUE':
-            const { step, field, value } = action.payload;
-            const { formData } = state;
+        case 'UPDATE_QUERY':
+            const { query } = action.payload;
+
             return {
                 ...state,
-                formData: {
-                    ...formData,
-                    [step]: { ...formData[step], [field]: value }
-                }
+                query
             };
-        case 'PREVIOUS':
+        case 'UPDATE_DATA':
+            const { Data } = action.payload;
             return {
-                ...state, currentStep: state.currentStep - 1
+                ...state, Data
             };
-        case 'NEXT':
-            var { stepComplete } = state;
-            const currentStep = state.currentStep + 1;
-            stepComplete = stepComplete < currentStep ? currentStep : stepComplete;
-            return {
-                ...state, currentStep, stepComplete
-            };
-        case 'SUBMIT':
-            return { ...state, formComplete: true }
         default:
             return state;
     }
