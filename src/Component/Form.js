@@ -9,8 +9,8 @@ class Form extends Component {
         var that = this;
         fetch(query).then(res => res.json()).then(data => {
             console.log(data);
-            this.props.updateData(data);
-            this.props.history.push('/result');
+            that.props.updateData(data);
+            that.props.history.push('/result');
         })
 
     }
