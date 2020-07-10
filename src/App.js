@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Form from './Component/Form';
-import Result from './Component/Result'
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
+import Navigation from './Component/Navigation';
+import Footer from './Component/Footer';
+import allRoute from './Component/allRoute';
 
 
 class App extends Component {
 
 
   render() {
-
     return (
 
-      <Router>
-        <Route path="/" component={Form} exact>
-          <Route path="/Result" component={Result} />
-        </Route>
-      </Router>
+      <div>
+
+        <BrowserRouter>
+          <Navigation />
+          <Switch>
+            {allRoute.map(r => <Route path={r.path} component={r.component} />)}
+          </Switch>
+          <Footer />
+        </BrowserRouter>
+
+      </div>
 
     )
   }
